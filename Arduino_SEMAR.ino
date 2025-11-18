@@ -1,5 +1,5 @@
 #define BLYNK_TEMPLATE_ID "TMPL6YZS6x4FW"
-#define BLYNK_TEMPLATE_NAME "PREMOS"
+#define BLYNK_TEMPLATE_NAME "SEMAR"
 #define BLYNK_AUTH_TOKEN "Z2rxBeMHjztCVC3ijJyuSuF8meTTr69y"
 #define BLYNK_PRINT Serial
 
@@ -7,14 +7,15 @@
 #include <WiFiClient.h>
 #include <BlynkSimpleEsp8266.h>
 
-const int pulsePin = A0; // Pin untuk pulse sensor
+const int pulsePin = A0; // Pin for pulse sensor, you can change
 const float refVolt = 5.0;
 int pulseValue;
 int pulseBpm, bloodGlucose, cholesterol, asamUratPria, asamUratWanita;
 
-char auth[] = "Z2rxBeMHjztCVC3ijJyuSuF8meTTr69y";
-char ssid[] = "muzazz";
-char pass[] = "9876543210";
+// Blynk authentication
+char auth[] = "fill with your blynk auth";
+char ssid[] = "fill with your wifi";
+char pass[] = "fill with your password wifi";
 BlynkTimer timer;
 
 void setup() {
@@ -74,11 +75,12 @@ void loop() {
     Blynk.virtualWrite(V3, asamUratPria);
     Blynk.virtualWrite(V4, asamUratWanita);
 
-
-    // String messagePulse = "Heart rate from Pulse: " + String(pulseBpm) + " BPM";
-    // String glucose = "Blood glucose from Pulse: " + String((pulseBpm * 140) / 120) + " mg/dl";
-    // Serial.println(messagePulse);
+    //for debugging in your IDE
+    String messagePulse = "Heart rate from Pulse: " + String(pulseBpm) + " BPM";
+    String glucose = "Blood glucose from Pulse: " + String((pulseBpm * 140) / 120) + " mg/dl";
+    Serial.println(messagePulse);
     delay(1000);
 
   Blynk.run();
 }
+
